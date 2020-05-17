@@ -25,6 +25,29 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
+    this.retrieveAuthFromStorage = this.retrieveAuthFromStorage.bind(this);
+
+    this.retrieveAuthFromStorage();
+  }
+
+  retrieveAuthFromStorage() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const accessToken = localStorage.getItem('accessToken');
+    const idToken = localStorage.getItem('idToken');
+    const expiresAt = localStorage.getItem('expiresAt') && parseInt(localStorage.getItem('expiresAt'));
+
+    const hasValidCredentials = isLoggedIn && accessToken && idToken && expiresAt;
+
+    if (hasValidCredentials && new Date().getTime() < expiresAt) {
+      this.accessToken = accessToken;
+      this.idToken = idToken;
+      this.expiresAt = expiresAt;
+    } else {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('idToken');
+      localStorage.removeItem('expiresAt');
+    }
   }
 
   login() {
@@ -63,6 +86,12 @@ export default class Auth {
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
+
+    // Store credentials in local storage
+    localStorage.setItem('accessToken', this.accessToken);
+    localStorage.setItem('idToken', this.idToken);
+    localStorage.setItem('expiresAt', this.expiresAt);
+
     // navigate to the home route
     this.history.replace('/contacts');
   }
@@ -87,6 +116,9 @@ export default class Auth {
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('idToken');
+    localStorage.removeItem('expiresAt');
 
     this.auth0.logout({
       return_to: window.location.origin

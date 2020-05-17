@@ -10,7 +10,7 @@ import withAuth from './withAuth';
 
 import Callback from './Callback';
 import Main from './Main';
-import ContactsList from './ContactsList';
+import Contacts from './Contacts';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,7 +40,7 @@ function App() {
         <Route
           path="/contacts"
           exact
-          render={withAuth(ContactsList, auth)}
+          render={withAuth(Contacts, auth)}
         />
         <Route
           path="/"
