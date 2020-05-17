@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
+function Main(props) {
+  function login() {
+    props.auth.login();
+  }
 
-function Main() {
   return (
-    <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Main
-      </a>
-    </header>
-    </div>
+    <Container fluid style={{ padding: '2em 5em' }}>
+      <Row>
+        <Col align="right">
+          <Button onClick={login}>Login</Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col align="center">
+          <h1>Welcome to your serverless contacts app</h1>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

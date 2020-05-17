@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Container, Row, Col } from 'react-bootstrap';
+import Menu from './Menu';
 
-function ContactsList() {
+function ContactsList(props) {
   return (
-    <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Contacts List
-      </a>
-    </header>
-    </div>
+    <Container fluid style={{ padding: '2em 5em' }}>
+      <Menu auth={props.auth}/>
+      <Row>
+        <Col align="left">
+          <h1>Contacts</h1>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

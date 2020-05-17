@@ -46,7 +46,7 @@ function App() {
           path="/"
           render={props => {
             auth.routeIfAuthenticated();
-            return <Main />;
+            return <Main auth={auth} />;
           }}
         />
       </Switch>

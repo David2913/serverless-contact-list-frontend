@@ -5,7 +5,12 @@ function withAuth(WrappedComponent, auth) {
   return function (props) {
     console.log('withAuthComponent: ', auth);
     auth.checkAuthentication();
-    return <WrappedComponent {...props} />;
+
+    const componentProps = {
+      ...props,
+      auth,
+    };
+    return <WrappedComponent {...componentProps} />;
   };
 }
 
