@@ -121,7 +121,7 @@ export default class Auth {
     localStorage.removeItem('expiresAt');
 
     this.auth0.logout({
-      return_to: window.location.origin
+      returnTo: window.location.origin,
     });
 
     // navigate to the home route
