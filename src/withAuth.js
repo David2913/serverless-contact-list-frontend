@@ -3,7 +3,6 @@ import React from 'react';
 
 function withAuth(WrappedComponent, auth) {
   return function (props) {
-    console.log('withAuthComponent: ', auth);
     auth.checkAuthentication();
 
     const componentProps = {

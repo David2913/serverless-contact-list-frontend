@@ -22,3 +22,30 @@ export async function deleteContact(idToken, contactId) {
     },
   });
 }
+
+export async function createContact(idToken, { name, phone }) {
+  const response = await axios.post(`${apiEndpoint}/contacts`, JSON.stringify({
+    name,
+    phone,
+  }), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${idToken}`
+    }
+  });
+  return response.data.item;
+}
+
+export async function generateUploadUrl(idToken, contactId) {
+  const response = await axios.post(`${apiEndpoint}/contacts/${contactId}/photo`, JSON.stringify({}), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${idToken}`
+    }
+  });
+  return response.data.uploadUrl;
+}
+
+export async function uploadFile(uploadUrl, file) {
+  await axios.put(uploadUrl, file)
+}

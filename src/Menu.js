@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 function Menu(props) {
   function logout() {
@@ -7,6 +8,9 @@ function Menu(props) {
   }
   return (
     <Row>
+      <Col>
+        <Link to="/contact">Home</Link>
+      </Col>
       <Col align="right">
         <Button onClick={logout}>Logout</Button>
       </Col>

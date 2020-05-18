@@ -11,6 +11,7 @@ import withAuth from './withAuth';
 import Callback from './Callback';
 import Main from './Main';
 import Contacts from './Contacts';
+import AddContactForm from './AddContactForm';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -41,6 +42,11 @@ function App() {
           path="/contacts"
           exact
           render={withAuth(Contacts, auth)}
+        />
+        <Route
+          path="/add_contact"
+          exact
+          render={withAuth(AddContactForm, auth)}
         />
         <Route
           path="/"
