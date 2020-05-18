@@ -12,6 +12,7 @@ import Callback from './Callback';
 import Main from './Main';
 import Contacts from './Contacts';
 import AddContactForm from './AddContactForm';
+import EditContactForm from './EditContactForm';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,6 +38,10 @@ function App() {
             handleAuthentication(props)
             return <Callback />
           }}
+        />
+        <Route
+          path="/contact/:contactId/edit"
+          render={withAuth(EditContactForm, auth)}
         />
         <Route
           path="/contacts"

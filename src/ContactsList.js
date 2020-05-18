@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Image } from 'react-bootstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 import { getContacts, deleteContact } from './api/contacts_api';
 
@@ -47,10 +48,12 @@ function ContactsList({ auth }) {
           <span>{contact.phone}</span>
         </td>
         <td>
-          <FaEdit
-            color="blue"
-            style={{ height: '1.5em', width: '1.5em', cursor: 'pointer', marginRight: '1.5em' }}
-          />
+          <Link to={`/contact/${contact.contactId}/edit`}>
+            <FaEdit
+              color="blue"
+              style={{ height: '1.5em', width: '1.5em', cursor: 'pointer', marginRight: '1.5em' }}
+            />
+          </Link>
           <FaTrash
             color="red"
             style={{ height: '1.5em', width: '1.5em', cursor: 'pointer' }}

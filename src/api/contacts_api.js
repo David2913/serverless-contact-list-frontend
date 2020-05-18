@@ -36,6 +36,18 @@ export async function createContact(idToken, { name, phone }) {
   return response.data.item;
 }
 
+export async function updateContact(idToken, { contactId, phone }) {
+  const response = await axios.put(`${apiEndpoint}/contacts/${contactId}`, JSON.stringify({
+    phone
+  }), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${idToken}`
+    }
+  });
+  return response.data.item;
+}
+
 export async function generateUploadUrl(idToken, contactId) {
   const response = await axios.post(`${apiEndpoint}/contacts/${contactId}/photo`, JSON.stringify({}), {
     headers: {
