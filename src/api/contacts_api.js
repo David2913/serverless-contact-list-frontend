@@ -11,3 +11,14 @@ export async function getContacts(idToken) {
   });
   return response.data.items;
 }
+
+
+export async function deleteContact(idToken, contactId) {
+  console.log('Deleting contact: ', contactId);
+  await axios.delete(`${apiEndpoint}/contacts/${contactId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${idToken}`
+    },
+  });
+}
